@@ -28,7 +28,7 @@ class MainWindow extends Component {
       });
       this.props.setReducer({
         type: 'QUERY_RESTURANT_LOCATION',
-        entity_id: this.state.city.id
+        entity_id: location.id
       });
     } else {
       this.props.setReducer({
