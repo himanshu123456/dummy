@@ -270,7 +270,7 @@ class RestaurantTable extends Component {
     if (!this.state.isLoading && rowStartIndex > this.props.restaurants.restaurants.length - 8 && this.props.restaurants.restaurants.length < 100) {
       console.log(this.props.restaurants.start);
       this.props.setReducer({
-        type: 'QUERY_RESTURANT_SKIP',
+        type: 'QUERY_RESTAURANT_SKIP',
         start: this.props.restaurants.start + 20
       });
       this.setState({
