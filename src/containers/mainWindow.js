@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 //import custom components
 import SnackBar from './snackbar';
 import HeadContainer from './headContainer';
-import ResturantTable from './resturantTable';
+import RestaurantTable from './restaurantTable';
 import LocationPicker from '../components/locationPicker';
 //import actions and configs
 import { fetch, setReducer } from '../actions/index';
@@ -27,7 +27,7 @@ class MainWindow extends Component {
         city: location
       });
       this.props.setReducer({
-        type: 'QUERY_RESTURANT_LOCATION',
+        type: 'QUERY_RESTAURANT_LOCATION',
         entity_id: location.id
       });
     } else {
@@ -58,7 +58,7 @@ class MainWindow extends Component {
       try {
         this.state.city = JSON.parse(this.state.city);
         this.props.setReducer({
-          type: 'QUERY_RESTURANT_LOCATION',
+          type: 'QUERY_RESTAURANT_LOCATION',
           entity_id: this.state.city.id
         });
       } catch (err) {
@@ -93,7 +93,7 @@ class MainWindow extends Component {
           locationDilogOpen: true
         });
       }}/>
-        <ResturantTable sort={this.props.query.sort} order={this.props.query.order}/>
+        <RestaurantTable sort={this.props.query.sort} order={this.props.query.order}/>
         {this.state.locationDilogOpen
         ? <LocationPicker location={this.state.city} onClose={this.onCloseLocationPicker} onSelectLocation={this.onSelectLocation}/>
         : ''}

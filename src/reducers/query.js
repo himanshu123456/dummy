@@ -10,12 +10,12 @@ const initialState = {
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case "QUERY_RESTURANT_SKIP":
+    case "QUERY_RESTAURANT_SKIP":
       return {
         ...state,
         start: action.start
       };
-    case "QUERY_RESTURANT_SEARCH":
+    case "QUERY_RESTAURANT_SEARCH":
       console.log({
         ...state,
         q: action.q,
@@ -30,7 +30,7 @@ export default function(state = initialState, action) {
         order: '',
         start: 0
       }
-    case "QUERY_RESTURANT_LOCATION":
+    case "QUERY_RESTAURANT_LOCATION":
       return {
         ...state,
         entity_id: action.entity_id,
@@ -38,7 +38,7 @@ export default function(state = initialState, action) {
         order: '',
         start: 0
       }
-    case "QUERY_RESTURANT_SORT":
+    case "QUERY_RESTAURANT_SORT":
       return {
         ...state,
         sort: action.sort,

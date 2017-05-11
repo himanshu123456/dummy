@@ -16,7 +16,7 @@ columnWidth.forEach(function(r) {
 })
 
 
-class ResturantTable extends Component {
+class RestaurantTable extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -100,7 +100,7 @@ class ResturantTable extends Component {
       }}
       onTouchTap={() => {
         this.props.setReducer({
-          type: 'QUERY_RESTURANT_SORT',
+          type: 'QUERY_RESTAURANT_SORT',
           sort: 'cost',
           order: (this.props.sort && this.props.sort == 'cost') ? (this.props.order == 'desc' ? 'asc' : 'desc') : 'asc'
         });
@@ -126,7 +126,7 @@ class ResturantTable extends Component {
       }}
       onTouchTap={() => {
         this.props.setReducer({
-          type: 'QUERY_RESTURANT_SORT',
+          type: 'QUERY_RESTAURANT_SORT',
           sort: 'rating',
           order: (this.props.sort && this.props.sort == 'rating') ? (this.props.order == 'desc' ? 'asc' : 'desc') : 'asc'
         });
@@ -340,4 +340,4 @@ function mapStateToProps({restaurants}) {
 
 export default connect(mapStateToProps, {
   setReducer
-})(ResturantTable);
+})(RestaurantTable);

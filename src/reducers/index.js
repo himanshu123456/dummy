@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import query from './query';
 import snack from './snack';
 import loader from './loader';
-import restaurants from './resturants';
+import restaurants from './restaurants';
 
 const rootReducer = combineReducers({
   snack,

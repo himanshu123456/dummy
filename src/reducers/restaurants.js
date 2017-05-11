@@ -5,7 +5,7 @@ export default function(state = {
     error: false
   } , action) {
   console.log(action);
-  if (action.type == "FETCH_RESTURANTS") {
+  if (action.type == "FETCH_RESTAURANTS") {
     if (!action.error && (action.payload && action.payload.data && !action.payload.data.error)) {
       action.payload.data.restaurants = action.payload.data.restaurants.map(function({restaurant}) {
         return [restaurant.thumb, restaurant.name, restaurant.average_cost_for_two, restaurant.user_rating.aggregate_rating, restaurant.location.address, restaurant.cuisines, restaurant.url];

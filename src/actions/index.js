@@ -14,7 +14,7 @@ export const fetch = function(query) {
   });
   return {
     payload: request,
-    type: 'FETCH_RESTURANTS'
+    type: 'FETCH_RESTAURANTS'
   }
 }
 export const setReducer = function(obj) {

@@ -53,7 +53,7 @@ class HeadContainer extends Component {
             searchTerm: ''
           });
           this.props.setReducer({
-            type: 'QUERY_RESTURANT_SEARCH',
+            type: 'QUERY_RESTAURANT_SEARCH',
             q: ''
           });
         }}
@@ -77,7 +77,7 @@ class HeadContainer extends Component {
       <IconButton tooltip="SEARCH"
         onTouchTap={() => {
           this.props.setReducer({
-            type: 'QUERY_RESTURANT_SEARCH',
+            type: 'QUERY_RESTAURANT_SEARCH',
             q: this.state.searchTerm
           });
         }}
@@ -123,7 +123,7 @@ class HeadContainer extends Component {
           showOptionDialog: false
         });
         this.props.setReducer({
-          type: 'QUERY_RESTURANT_SEARCH',
+          type: 'QUERY_RESTAURANT_SEARCH',
           q: ''
         });
       }}
@@ -134,7 +134,7 @@ class HeadContainer extends Component {
         });
         if (v != this.props.query.q)
           this.props.setReducer({
-            type: 'QUERY_RESTURANT_SEARCH',
+            type: 'QUERY_RESTAURANT_SEARCH',
             q: v
           });
       }}
