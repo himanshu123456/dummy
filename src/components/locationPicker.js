@@ -50,11 +50,19 @@ export default (props) => {
     onTouchTap={SelectLocation}
     />,
   ];
+  let contentStyle = {
+  }
+  if (window.innerHeight < window.innerWidth)
+    contentStyle.transform = 'translate(0,0)';
   return (
     <Dialog
     title="Select your Location"
     actions={actions}
     modal={false}
+    bodyStyle={{
+      minHeight: '10rem'
+    }}
+    contentStyle={contentStyle}
     open={true}
     onRequestClose={props.onClose}
     autoScrollBodyContent={true}

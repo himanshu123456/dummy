@@ -31,10 +31,15 @@ class RestaurantTable extends Component {
     this.loadMoreRows = this.loadMoreRows.bind(this);
     this._onSectionRendered = this._onSectionRendered.bind(this);
     window.addEventListener("orientationchange", () => {
-      this.setState({
-        width: window.innerWidth,
-        height: window.innerHeight
-      })
+      let i = setInterval(() => {
+        if (window.innerWidth != this.state.width) {
+          clearInterval(i)
+          this.setState({
+            width: window.innerWidth,
+            height: window.innerHeight
+          })
+        }
+      }, 200);
     })
   }
 
