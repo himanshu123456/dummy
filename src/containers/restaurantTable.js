@@ -21,13 +21,21 @@ class RestaurantTable extends Component {
     super(props);
     this.state = {
       onLine: true,
-      scrollTop: 0
+      scrollTop: 0,
+      width: window.innerWidth,
+      height: window.innerHeight
     }
     this.cellRenderer = this.cellRenderer.bind(this);
     this.columnWidth = this.columnWidth.bind(this);
     this.isRowLoaded = this.isRowLoaded.bind(this);
     this.loadMoreRows = this.loadMoreRows.bind(this);
     this._onSectionRendered = this._onSectionRendered.bind(this);
+    window.addEventListener("orientationchange", () => {
+      this.setState({
+        width: window.innerWidth,
+        height: window.innerHeight
+      })
+    })
   }
 
   componentWillReceiveProps(nextProps) {
@@ -291,7 +299,7 @@ class RestaurantTable extends Component {
         position: 'absolute',
         top: '5.6rem',
         bottom: '0.1rem',
-        width: window.innerWidth < containerWidth ? window.innerWidth : containerWidth,
+        width: this.state.width < containerWidth ? this.state.width : containerWidth,
         overflowX: 'auto',
         left: '50%',
         transform: 'translateX(-50%)'
@@ -312,7 +320,7 @@ class RestaurantTable extends Component {
             cellRenderer={this.cellRenderer}
             columnCount={this.props.restaurants.restaurants[0].length}
             columnWidth={this.columnWidth}
-            height={window.innerHeight - 90}
+            height={this.state.height - 90}
             rowCount={this.props.restaurants.restaurants.length}
             ref={registerChild}
             rowHeight={130}

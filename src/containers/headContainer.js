@@ -6,7 +6,6 @@ import FlatButton from 'material-ui/FlatButton';
 import IconButton from 'material-ui/IconButton';
 import TextField from 'material-ui/TextField';
 //import custom components
-import MobileOptionDialog from '../components/mobileOptionDialog'
 //import actions and configs
 import { setReducer } from '../actions/index';
 
@@ -15,7 +14,7 @@ class HeadContainer extends Component {
     super(props);
     this.state = {
       searchTerm: '',
-      showOptionDialog: false
+      showSearchBar: false
     }
     this.onChange = this.onChange.bind(this);
   }
@@ -38,12 +37,25 @@ class HeadContainer extends Component {
     return (
       <Toolbar
       style={{
-        backgroundColor: '#ca1f2e'
+        backgroundColor: '#ca1f2e',
+        position: 'relative',
+        padding: 0
       }}
       >
+      {window.innerWidth > 650 ? ''
+        : <IconButton
+        onTouchTap={() => {
+          this.props.onOpenLoginDialog();
+        }}
+        style={{
+          height: '100%'
+        }}
+        >
+          <FontIcon className="material-icons" color='white'>place</FontIcon></IconButton>}
     <ToolbarTitle text="Zomato Table"
       style={{
-        color: 'white'
+        color: 'white',
+        marginLeft: '2rem'
       }}/>
       {window.innerWidth > 650 ?
         <ToolbarGroup lastChild={true}>
@@ -107,44 +119,77 @@ class HeadContainer extends Component {
         : <IconButton
         onTouchTap={() => {
           this.setState({
-            showOptionDialog: true
+            showSearchBar: true
+          });
+        }}
+        style={{
+          height: '100%'
+        }}
+        >
+              <FontIcon className="material-icons" color='white'>search</FontIcon></IconButton>}
+              {this.state.showSearchBar ?
+        <div style={{
+          position: 'absolute',
+          left: 0,
+          right: 0,
+          height: '100%',
+          background: '#ca1f2e',
+          zIndex: '2'
+        }}>
+
+       <IconButton tooltip="CLEAR"
+        onTouchTap={() => {
+          this.setState({
+            searchTerm: '',
+            showSearchBar: false
+          });
+          this.props.setReducer({
+            type: 'QUERY_RESTAURANT_SEARCH',
+            q: ''
+          });
+        }}
+        style={{
+          width: '20%',
+          float: 'left',
+          height: '100%'
+        }}
+        iconStyle={{
+          fontSize: '15px'
+        }}
+        >
+        <FontIcon className="material-icons"color='white'>clear</FontIcon></IconButton>
+                      <IconButton
+        style={{
+          float: 'right',
+          width: '20%',
+          height: '100%'
+        }}
+        tooltip="SEARCH"
+        onTouchTap={() => {
+          this.props.setReducer({
+            type: 'QUERY_RESTAURANT_SEARCH',
+            q: this.state.searchTerm
           });
         }}
         >
-              <FontIcon className="material-icons" color='white'>menu</FontIcon></IconButton>}
-{this.state.showOptionDialog ? <MobileOptionDialog onClose={() => {
-        this.setState({
-          showOptionDialog: false
-        });
-      }}
-      onClear={() => {
-        this.setState({
-          searchTerm: '',
-          showOptionDialog: false
-        });
-        this.props.setReducer({
-          type: 'QUERY_RESTAURANT_SEARCH',
-          q: ''
-        });
-      }}
-      onSearch={(v) => {
-        this.setState({
-          searchTerm: v,
-          showOptionDialog: false
-        });
-        if (v != this.props.query.q)
-          this.props.setReducer({
-            type: 'QUERY_RESTAURANT_SEARCH',
-            q: v
-          });
-      }}
-      onOpenLoginDialog={() => {
-        this.setState({
-          showOptionDialog: false
-        });
-        this.props.onOpenLoginDialog();
-      }}
-      searchTerm={this.state.searchTerm} location={this.props.location}/> : ''}
+                      <FontIcon className="material-icons" color='white'>search</FontIcon></IconButton>
+
+              <TextField
+        hintText="Search"
+        inputStyle={{
+          color: 'white'
+        }}
+        value={this.state.searchTerm}
+        hintStyle={{
+          color: 'white'
+        }}
+        style={{
+          float: 'right',
+          width: '60%'
+        }}
+        onChange={this.onChange}
+        />
+        </div> : ''}
 </Toolbar>
     )
   }
